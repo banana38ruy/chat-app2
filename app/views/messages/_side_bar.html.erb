@@ -1,7 +1,28 @@
 <%# サイドバーとチャット画面で2分する場合は
-　上から機能についての積み木を置いていく %>
+上から機能についての積み木を置いていく %>
 <div class="side-bar-header">
+  <div class="header-name">
+  <%# 個別に値にプロパティを付けたい場合はそのリンクの上にdivをつくる %>
+    <a href="#">Tom</a>
+  </div>
+  <div class="create-room">
+    <a href="#">チャットを作成する</a>
+  </div>
 </div>
 
 <div class="rooms">
+  <div class="room">
+  <%# roomsの中にroom,room-nameの階層があり
+ その下にリンクを置く %>
+    <div class="room-name">
+      <a href="#">techroom1</a>
+    </div>
+  </div>
+  <div class="room">
+    <div class="room-name">
+      <a href="#">techroom2</a>
+    </div>
+  </div>
 </div>
+
+
