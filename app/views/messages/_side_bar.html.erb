@@ -3,7 +3,9 @@
 <div class="side-bar-header">
   <div class="header-name">
   <%# 個別に値にプロパティを付けたい場合はそのリンクの上にdivをつくる %>
-    <a href="#">Tom</a>
+  <%= link_to current_user.name, edit_user_path(current_user) %>
+     <%#=ログインしているユーザー名はcurrent_userに .nameをつける
+     パスはedit_user_pathに(current_user)を引数でつける %>
   </div>
   <div class="create-room">
     <a href="#">チャットを作成する</a>
