@@ -12,37 +12,7 @@
 </div>
 
 <div class="messages">
- <div class="message">
-  <div class="upper-message">
-   <div class="message-user">
-   tom
-   </div>
-   <div class="message-date">
-   2020/3/31(wed) 12:43:30
-   </div>
-  </div>
-  <div class="lower-message">
-   <div class="message-content">
-    good mornig
-   </div>
- </div>
-</div>
-
-<div class="message">
-  <div class="upper-message">
-   <div class="message-user">
-   tom
-   </div>
-   <div class="message-date">
-   2020/3/31(wed) 12:43:30
-   </div>
-  </div>
-  <div class="lower-message">
-  <div class="message-content">
-   guten morgen
-   </div>
-  </div>
- </div>
+  <%= render partial: 'message', collection: @messages %>
 </div>
 
 <%= form_with model: [@room, @message], class: 'form', local: true do |f| %>
@@ -57,17 +27,17 @@
 <% end %>
 
 
- <div class="form">
- <div class="form-input">
+ <%# <div class="form"> %>
+ <%# <div class="form-input">
     <input class="form-message" placeholder= "type a message">
     <label class="form-image">
      <span class="image-file">画像</span>
-     <input type="file" class="hidden">
+     <input type="file" class="hidden"> %>
      <%# ファイルを見えなくすると画像選択を使えなくなるのでlabel要素で押したように選択できる %>
-    </label>
+    <%# </label> %>
     <%# label要素とはフォームの中でフォームの項目名とフォームの入力要素を関連付けるための要素
     役割の一つはlabel要素がクリックされたときに挟んだ子要素もクリックされたことにしてくれる
     この仕組を使うと見えないはずのファイル選択ボタンをクリックしたかのように動作させることができる %>
-  </div>
-  <input class="form-submit" type="submit" value="送信">
+  <%# </div>
+  <input class="form-submit" type="submit" value="送信"> %>
 </div>
