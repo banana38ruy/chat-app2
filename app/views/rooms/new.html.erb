@@ -16,6 +16,23 @@
         <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー</label>
       </div>
       <div class='chat-room-form__field--right'>
+       <select name="room[user_ids][]">
+        <option value="">チャットするユーザーを選択してください</option>
+        <% User.where.not(id: current_user.id).each do |user| %>
+        <%#=モデル名.where.not("条件")は、条件に一致したレコード以外の値を配列として
+          取得できる  %>
+        <option value=<%= user.id %>><%= user.name %></option>
+        <%#=チャットルームを作成するユーザー名も含まれてしまっているので
+          それを変更する  %>
+        <% end %>
+      </select>
+      <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
+      <%#=この記述で、現在ログイン中のユーザーが持つidをparamsに含めることができる
+        type属性にhiddenを指定することで画面上には表示されないinput要素を作成できる
+        name属性にroom[user_ids][]を指定し、room[user_ids]をキーに対する値を
+        配列で受け取る仕組み
+        value属性にはcurrent_user_idを指定しているため、room[user_ids]キーに
+        対してログイン中ユーザーのidを配列として格納しコントローラーへ送信する%>
       </div>
     </div>
     <div class='chat-room-form__field'>
