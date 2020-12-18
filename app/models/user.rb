@@ -7,4 +7,5 @@ class User < ApplicationRecord
   #validates :確認したいもの presence: true (空じゃないか？)
   has_many :room_users
   has_many :rooms, through: :room_users
+  has_many :messages
 end
