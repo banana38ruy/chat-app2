@@ -1,0 +1,47 @@
+<div class='chat-room-form'>
+  <h1>新規チャットルーム</h1>
+  <%=form_with model: @room, local: true do |f|%>
+   <%# params = {room: {name: "tanaka"}} %>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'>
+        <%= f.label :チャットルーム名, class: 'chat-room-form__label'%>
+      </div>
+      <div class='chat-room-form__field--right'>
+        <%= f.text_field :name, class: 'chat__room_name chat-room-form__input', placeholder: 'チャットルーム名を入力してください'%>
+      </div>
+    </div>
+    <div class='chat-room-form__field'>
+    </div>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'>
+        <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー</label>
+      </div>
+      <div class='chat-room-form__field--right'>
+       <select name="room[user_ids][]">
+        <option value="">チャットするユーザーを選択してください</option>
+        <% User.where.not(id: current_user.id).each do |user| %>
+        <%#=モデル名.where.not("条件")は、条件に一致したレコード以外の値を配列として
+          取得できる  %>
+        <option value=<%= user.id %>><%= user.name %></option>
+        <%#=valueは情報を送信する場合に送られる値を決めているつまり右のuser.nameを選択することによって
+        user.idが上と下に飛ぶ
+        チャットルームを作成するユーザー名も含まれてしまっているので
+          それを変更する  %>
+        <% end %>
+      </select>
+      <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
+      <%#=この記述は言わばルームを作る人のストロングパラメーターだから見えなくしている
+      自分が選択肢したネームとvalueで送る予定のcurrent_userを箱に詰めている
+        %>
+      </div>
+    </div>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'></div>
+      <div class='chat-room-form__field--right'>
+        <%= f.submit class: 'chat-room-form__action-btn'%>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%# params = {room: {user_ids: [1.3]}} %>
