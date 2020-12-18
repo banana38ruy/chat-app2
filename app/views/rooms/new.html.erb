@@ -1,6 +1,7 @@
 <div class='chat-room-form'>
   <h1>新規チャットルーム</h1>
   <%=form_with model: @room, local: true do |f|%>
+   <%# params = {room: {name: "tanaka"}} %>
     <div class='chat-room-form__field'>
       <div class='chat-room-form__field--left'>
         <%= f.label :チャットルーム名, class: 'chat-room-form__label'%>
@@ -22,17 +23,16 @@
         <%#=モデル名.where.not("条件")は、条件に一致したレコード以外の値を配列として
           取得できる  %>
         <option value=<%= user.id %>><%= user.name %></option>
-        <%#=チャットルームを作成するユーザー名も含まれてしまっているので
+        <%#=valueは情報を送信する場合に送られる値を決めているつまり右のuser.nameを選択することによって
+        user.idが上と下に飛ぶ
+        チャットルームを作成するユーザー名も含まれてしまっているので
           それを変更する  %>
         <% end %>
       </select>
       <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
-      <%#=この記述で、現在ログイン中のユーザーが持つidをparamsに含めることができる
-        type属性にhiddenを指定することで画面上には表示されないinput要素を作成できる
-        name属性にroom[user_ids][]を指定し、room[user_ids]をキーに対する値を
-        配列で受け取る仕組み
-        value属性にはcurrent_user_idを指定しているため、room[user_ids]キーに
-        対してログイン中ユーザーのidを配列として格納しコントローラーへ送信する%>
+      <%#=この記述は言わばルームを作る人のストロングパラメーターだから見えなくしている
+      自分が選択肢したネームとvalueで送る予定のcurrent_userを箱に詰めている
+        %>
       </div>
     </div>
     <div class='chat-room-form__field'>
@@ -43,3 +43,5 @@
     </div>
   <% end %>
 </div>
+
+<%# params = {room: {user_ids: [1.3]}} %>
